@@ -1,0 +1,30 @@
+config:                                             # <=== Basic setup
+    month_count: 12                                 # <=== Total month count to calculate in advance
+    timezone: 'Europe/Berlin'                       # <=== Used timezone for datetime calculation
+
+# define your own processes here, or reuse existing by changing the configuration
+processes:
+
+    #Example
+    #acme:                                            <=== unique name of process
+    #    class:   'Acme\Process\MyProcess'            <=== Full qualified path to class,
+    #                                                      class must implement PayoutInterface
+    #    config:
+    #        due:          'last day of this month'   <=== Due date of payout (use either implemented datetime
+    #                                                      wording or implement it yourself)
+    #        allowed_days: [1, 2, 3, 4, 5]            <=== Allowed weeksdays for given due day
+    #        fallback:     'last friday'              <=== The fallback date, if due date is not valid according to
+    #                                                      allowed days.
+
+    salary:
+        class:   'Wienerio\Burroughs\PayoutProcessor\SalaryPayoutProcessor'
+        config:
+            due:          'last day of this month'
+            allowed_days: [1, 2, 3, 4, 5]
+            fallback:     'last friday'
+    bonus:
+        class:   'Wienerio\Burroughs\PayoutProcessor\BonusPayoutProcessor'
+        config:
+            due:          '15'
+            allowed_days: [1, 2, 3, 4, 5]
+            fallback:     'next wednesday'

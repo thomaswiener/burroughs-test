@@ -1,0 +1,8 @@
+# paths
+vendor/
+code-coverage/
+.idea/
+
+# files
+composer.phar
+composer.lock
