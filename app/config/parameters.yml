@@ -19,12 +19,14 @@ processes:
     salary:
         class:   'Wienerio\Burroughs\PayoutProcessor\SalaryPayoutProcessor'
         config:
+            name:         salary
             due:          'last day of this month'
             allowed_days: [1, 2, 3, 4, 5]
             fallback:     'last friday'
     bonus:
         class:   'Wienerio\Burroughs\PayoutProcessor\BonusPayoutProcessor'
         config:
+            name:         bonus
             due:          '15'
             allowed_days: [1, 2, 3, 4, 5]
             fallback:     'next wednesday'
