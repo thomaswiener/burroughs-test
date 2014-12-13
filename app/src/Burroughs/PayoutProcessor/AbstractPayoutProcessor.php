@@ -9,30 +9,27 @@
 namespace Wienerio\Burroughs\PayoutProcessor;
 
 /**
- * Class SalaryPayoutProcessor
+ * Class DefaultPayoutProcessor
  * @package Wienerio\Burroughs\PayoutProcessor
  */
-class SalaryPayoutProcessor implements PayoutInterface
+abstract class AbstractPayoutProcessor
 {
-    /**
-     * processor name
-     */
-    const NAME = 'salary';
+    private $name;
 
     /**
      * @var string
      */
-    protected $due;
+    private $due;
 
     /**
      * @var array
      */
-    protected $allowedDays;
+    private $allowedDays;
 
     /**
      * @var string
      */
-    protected $fallback;
+    private $fallback;
 
     /**
      * Set the configuration
@@ -41,6 +38,7 @@ class SalaryPayoutProcessor implements PayoutInterface
      */
     public function __construct(array $config)
     {
+        $this->name = $config['name'];
         $this->due = $config['due'];
         $this->allowedDays = $config['allowed_days'];
         $this->fallback = $config['fallback'];
@@ -53,19 +51,7 @@ class SalaryPayoutProcessor implements PayoutInterface
      *
      * @return \DateTime
      */
-    public function getPayoutDate(\DateTime $date)
-    {
-        $date->modify($this->due);
-        $currentWeekday = $date->format('w');
-
-        if (in_array($currentWeekday, $this->allowedDays)) {
-            return $date;
-        }
-
-        $date->modify($this->fallback);
-
-        return $date;
-    }
+    abstract public function getPayoutDate(\DateTime $date);
 
     /**
      * Get the processor name
@@ -74,6 +60,32 @@ class SalaryPayoutProcessor implements PayoutInterface
      */
     public function getName()
     {
-        return self::NAME;
+        return $this->name;
     }
+
+    /**
+     * @return array
+     */
+    public function getAllowedDays()
+    {
+        return $this->allowedDays;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDue()
+    {
+        return $this->due;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFallback()
+    {
+        return $this->fallback;
+    }
+
+
 }

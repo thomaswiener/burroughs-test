@@ -8,28 +8,29 @@
 
 namespace Wienerio\Tests\Burroughs\PayoutCalculator;
 
-use Wienerio\Burroughs\PayoutProcessor\BonusPayoutProcessor;
+use Wienerio\Burroughs\PayoutProcessor\DefaultPayoutProcessor;
 
 /**
  * Class Driver
  *
  * @author Thomas Wiener <wiener.thomas@googlemail.com>
  */
-class BonusPayoutProcessorTest extends \PHPUnit_Framework_TestCase
+class DefaultPayoutProcessorTest extends \PHPUnit_Framework_TestCase
 {
-    protected $payoutProcessor;
+    private $payoutProcessor;
 
     public function setUp()
     {
         parent::setUp();
 
         $config = [
-            'due'           => '15',
+            'name'          => 'salary',
+            'due'           => 'last day of this month',
             'allowed_days'  => [1, 2, 3, 4, 5],
-            'fallback'      => 'next wednesday'
+            'fallback'      => 'last friday'
         ];
 
-        $this->payoutProcessor = new BonusPayoutProcessor($config);
+        $this->payoutProcessor = new DefaultPayoutProcessor($config);
     }
 
     public function tearDown()
@@ -40,10 +41,34 @@ class BonusPayoutProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetName()
     {
-        $this->assertEquals($this->payoutProcessor->getName(), 'bonus');
+        $this->assertEquals($this->payoutProcessor->getName(), 'salary');
     }
 
-    public function testDayOfMonthOnSaturday()
+    public function testLastDayOfMonthOnSaturday()
+    {
+        $date = new \DateTime();
+        $date->setDate(2014, 5, 1);
+        $dateCalculated = $this->payoutProcessor->getPayoutDate($date);
+
+        $this->assertEquals(
+            $dateCalculated->format('Y-m-d'),
+            '2014-05-30'
+        );
+    }
+
+    public function testLastDayOfMonthOnSunday()
+    {
+        $date = new \DateTime();
+        $date->setDate(2014, 11, 1);
+        $dateCalculated = $this->payoutProcessor->getPayoutDate($date);
+
+        $this->assertEquals(
+            $dateCalculated->format('Y-m-d'),
+            '2014-11-28'
+        );
+    }
+
+    public function testLastDayOfMonthOnFriday()
     {
         $date = new \DateTime();
         $date->setDate(2014, 2, 1);
@@ -51,43 +76,19 @@ class BonusPayoutProcessorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $dateCalculated->format('Y-m-d'),
-            '2014-02-19'
+            '2014-02-28'
         );
     }
 
-    public function testDayOfMonthOnSunday()
+    public function testLastDayOfMonthOnMonday()
     {
         $date = new \DateTime();
-        $date->setDate(2014, 6, 1);
+        $date->setDate(2014, 3, 1);
         $dateCalculated = $this->payoutProcessor->getPayoutDate($date);
 
         $this->assertEquals(
             $dateCalculated->format('Y-m-d'),
-            '2014-06-18'
-        );
-    }
-
-    public function testDayOfMonthOnFriday()
-    {
-        $date = new \DateTime();
-        $date->setDate(2014, 8, 1);
-        $dateCalculated = $this->payoutProcessor->getPayoutDate($date);
-
-        $this->assertEquals(
-            $dateCalculated->format('Y-m-d'),
-            '2014-08-15'
-        );
-    }
-
-    public function testDayOfMonthOnMonday()
-    {
-        $date = new \DateTime();
-        $date->setDate(2014, 9, 1);
-        $dateCalculated = $this->payoutProcessor->getPayoutDate($date);
-
-        $this->assertEquals(
-            $dateCalculated->format('Y-m-d'),
-            '2014-09-15'
+            '2014-03-31'
         );
     }
 }
