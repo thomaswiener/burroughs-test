@@ -31,7 +31,7 @@ class CsvWriter
     public function __construct($filename)
     {
         $this->filename = $filename;
-        $this->fullFilePath = __DIR__ . '/../../' . $filename;
+        $this->fullFilePath = __DIR__ . '/../../../../' . $filename;
 
         //clean up (remove file if exists)
         if (file_exists($this->fullFilePath)) {

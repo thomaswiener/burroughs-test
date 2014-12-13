@@ -3,12 +3,6 @@
     "description": "Session Digital::Burroughs Test",
     "license": "MIT",
     "minimum-stability": "stable",
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/RocketBus/clickbus-api-dto"
-        }
-    ],
     "require": {
         "php": ">=5.4",
         "symfony/yaml": "2.0.*@dev",

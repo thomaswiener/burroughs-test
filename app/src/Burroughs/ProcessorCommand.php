@@ -48,9 +48,12 @@ class ProcessorCommand extends Command
         //initialize config and file paths, csv writer
         $filename   = $input->getArgument('filename');
         $csvWriter  = new CsvWriter($filename);
-        $parameters = Yaml::parse(__DIR__ . '/../config/parameters.yml');
+        $parameters = Yaml::parse(__DIR__ . '/../../config/parameters.yml');
         $config     = $parameters['config'];
 
+        $output->writeln('*****************************');
+        $output->writeln('Payout Report Processor');
+        $output->writeln('*****************************');
         $output->writeln(sprintf('Generating and Saving Payout Report to: <info>%s</info>', $filename));
 
         $processes = $this->getProcesses($parameters);

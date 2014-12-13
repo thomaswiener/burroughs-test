@@ -98,7 +98,10 @@ class PayoutData implements PayoutDataInterface
      */
     public function getDataAsArray()
     {
-        return $this->items;
+        return array_merge(
+            array($this->getDate()),
+            $this->items
+        );
     }
 
     /**
@@ -108,7 +111,10 @@ class PayoutData implements PayoutDataInterface
      */
     public function getHeaderAsArray()
     {
-        return array_keys($this->items);
+        return array_merge(
+            array('month'),
+            array_keys($this->items)
+        );
     }
 
 
