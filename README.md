@@ -23,7 +23,7 @@ git clone git@.....
 
 ### Download Composer
 
-Download the Composer
+Within the project folder, download the Composer
 
 ```
 
@@ -37,7 +37,7 @@ Install dependencies
 php composer.phar install
 ```
 
-Later on to update dependencies after updating this app from bitbucket just do
+Later on in order to update dependencies after updating this app just do
 
 ```
 php composer.phar update
@@ -63,5 +63,4 @@ This Application has test cases for its processors. To run them do the following
 
 ```
 php vendor/bin/phpunit app/tests/Burroughs/PayoutProcessor/
-php vendor/bin/phpunit
 ```
