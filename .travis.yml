@@ -1,0 +1,8 @@
+language: php
+before_script:
+- curl -s http://getcomposer.org/installer | php
+- php composer.phar install --dev
+php:
+- "5.5"
+- "5.4"
+script: phpunit --colors --coverage-text --configuration app/tests/phpunit.xml.dist app/tests/

@@ -1,4 +1,4 @@
-Burroughs Test
+Burroughs Test [![Build Status](https://travis-ci.org/thomaswiener/burroughs-test.svg?branch=master)](https://travis-ci.org/thomaswiener/burroughs-test)
 =====================
 
 ## About
@@ -18,7 +18,7 @@ of this. Just follow the description...
 First clone the project, if not already done so.
 
 ```
-git clone git@.....
+git clone git@github.com:thomaswiener/burroughs-test.git
 ```
 
 ### Download Composer
@@ -26,7 +26,7 @@ git clone git@.....
 Within the project folder, download the Composer
 
 ```
-
+curl -sS https://getcomposer.org/installer | php
 ```
 
 ### Install Composer
