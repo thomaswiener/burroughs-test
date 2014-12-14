@@ -6,7 +6,8 @@
     "require": {
         "php": ">=5.4",
         "symfony/yaml": "2.0.*@dev",
-        "symfony/console": "3.0.*@dev"
+        "symfony/console": "3.0.*@dev",
+        "monolog/monolog": "1.11.*@dev"
     },
     "require-dev":
     {

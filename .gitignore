@@ -1,6 +1,9 @@
 # paths
 vendor/
 code-coverage/
+tmp/
+
+# ide
 .idea/
 
 # files

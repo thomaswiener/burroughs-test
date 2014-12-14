@@ -7,6 +7,7 @@
  */
 
 namespace Wienerio\Burroughs\PayoutProcessor;
+use Monolog\Logger;
 
 /**
  * Class DefaultPayoutProcessor
@@ -29,8 +30,10 @@ class DefaultPayoutProcessor extends AbstractPayoutProcessor implements PayoutIn
         if (in_array($currentWeekday, $this->getAllowedDays())) {
             return $date;
         }
-
+        $dateBefore = clone $date;
         $date->modify($this->getFallback());
+
+        $this->logDateModification($dateBefore, $date);
 
         return $date;
     }

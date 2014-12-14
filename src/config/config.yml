@@ -1,6 +1,10 @@
-config:                                             # <=== Basic setup
+datetime:                                           # <=== DateTime setup
     month_count: 12                                 # <=== Total month count to calculate in advance
     timezone: 'Europe/Berlin'                       # <=== Used timezone for datetime calculation
+
+monolog:
+    name: log
+    path: log.log
 
 # define your own processes here, or reuse existing by changing the configuration
 processes:
@@ -16,15 +20,16 @@ processes:
     #        fallback:     'last friday'              <=== The fallback date, if due date is not valid according to
     #                                                      allowed days.
 
-    salary:
-        class:   'Wienerio\Burroughs\PayoutProcessor\SalaryPayoutProcessor'
+    default:
+        class:   'Wienerio\Burroughs\PayoutProcessor\DefaultPayoutProcessor'
         config:
             name:         salary
             due:          'last day of this month'
             allowed_days: [1, 2, 3, 4, 5]
             fallback:     'last friday'
-    bonus:
-        class:   'Wienerio\Burroughs\PayoutProcessor\BonusPayoutProcessor'
+
+    custom_due_date:
+        class:   'Wienerio\Burroughs\PayoutProcessor\CustomDueDatePayoutProcessor'
         config:
             name:         bonus
             due:          '15'
