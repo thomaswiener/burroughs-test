@@ -15,8 +15,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Wienerio\\": "app/src/",
-            "Wienerio\\Tests\\": "app/tests/"
+            "Wienerio\\": "src/",
+            "Wienerio\\Tests\\": "tests/"
         }
     }
 }
