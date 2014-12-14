@@ -30,7 +30,8 @@ class CustomDueDatePayoutProcessorTest extends \PHPUnit_Framework_TestCase
             'fallback'      => 'next wednesday'
         ];
 
-        $this->payoutProcessor = new CustomDueDatePayoutProcessor($config);
+        $logger = $this->getMockedLogger();
+        $this->payoutProcessor = new CustomDueDatePayoutProcessor($config, $logger);
     }
 
     public function tearDown()
@@ -90,5 +91,15 @@ class CustomDueDatePayoutProcessorTest extends \PHPUnit_Framework_TestCase
             $dateCalculated->format('Y-m-d'),
             '2014-09-15'
         );
+    }
+
+    protected function getMockedLogger()
+    {
+        $mock = $this->getMockBuilder('Monolog\Logger')
+            ->disableOriginalConstructor()
+            ->setMethods(['__construct', 'addWarning'])
+            ->getMock();
+
+        return $mock;
     }
 }

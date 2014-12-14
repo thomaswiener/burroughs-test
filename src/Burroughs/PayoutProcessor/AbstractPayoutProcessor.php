@@ -71,7 +71,8 @@ abstract class AbstractPayoutProcessor
     public function logDateModification(\DateTime $dateBefore, \DateTime $dateAfter)
     {
         $this->logWarning(
-            sprintf('%s is not an allowed weekday. Modifying date to %s',
+            sprintf(
+                '%s is not an allowed weekday. Modifying date to %s',
                 $dateBefore->format('Y-m-d'),
                 $dateAfter->format('Y-m-d')
             )

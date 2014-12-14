@@ -7,7 +7,6 @@
  */
 
 namespace Wienerio\Burroughs\PayoutProcessor;
-use Monolog\Logger;
 
 /**
  * Class DefaultPayoutProcessor

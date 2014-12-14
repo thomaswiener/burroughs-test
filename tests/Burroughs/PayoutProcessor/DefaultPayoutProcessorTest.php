@@ -30,7 +30,8 @@ class DefaultPayoutProcessorTest extends \PHPUnit_Framework_TestCase
             'fallback'      => 'last friday'
         ];
 
-        $this->payoutProcessor = new DefaultPayoutProcessor($config);
+        $logger = $this->getMockedLogger();
+        $this->payoutProcessor = new DefaultPayoutProcessor($config, $logger);
     }
 
     public function tearDown()
@@ -90,5 +91,15 @@ class DefaultPayoutProcessorTest extends \PHPUnit_Framework_TestCase
             $dateCalculated->format('Y-m-d'),
             '2014-03-31'
         );
+    }
+
+    protected function getMockedLogger()
+    {
+        $mock = $this->getMockBuilder('Monolog\Logger')
+            ->disableOriginalConstructor()
+            ->setMethods(['__construct', 'addWarning'])
+            ->getMock();
+
+        return $mock;
     }
 }
