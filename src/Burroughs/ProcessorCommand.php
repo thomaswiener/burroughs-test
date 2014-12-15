@@ -74,7 +74,7 @@ class ProcessorCommand extends Command
 
         $isFirstLine = true;
 
-        for ($i = 0; $i < $config['datetime']['month_count'] ; $i++) {
+        for ($i = 0; $i < $config['datetime']['month_count']; $i++) {
             $payoutDataItem = $this->getPayoutData($processes, $date);
             if ($isFirstLine) {
                 $csvWriter->appendData($payoutDataItem->getHeaderAsArray());

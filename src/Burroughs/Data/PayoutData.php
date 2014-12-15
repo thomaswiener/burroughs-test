@@ -116,6 +116,4 @@ class PayoutData implements PayoutDataInterface
             array_keys($this->items)
         );
     }
-
-
-} 
+}
