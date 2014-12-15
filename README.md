@@ -62,5 +62,5 @@ php index.php payout:generate report.csv
 This Application has test cases for its processors. To run them do the following:
 
 ```
-php vendor/bin/phpunit app/tests/Burroughs/PayoutProcessor/
+php vendor/bin/phpunit --colors --coverage-text --configuration tests/phpunit.xml.dist  tests/
 ```
