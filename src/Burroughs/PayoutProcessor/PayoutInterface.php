@@ -25,5 +25,4 @@ interface PayoutInterface
      * @return \DateTime
      */
     public function getPayoutDate(\DateTime $date);
-
 }

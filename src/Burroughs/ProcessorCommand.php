@@ -73,6 +73,7 @@ class ProcessorCommand extends Command
         $date->setTimezone(new \DateTimeZone($config['datetime']['timezone']));
 
         $isFirstLine = true;
+
         for ($i = 0; $i < $config['datetime']['month_count'] ; $i++) {
             $payoutDataItem = $this->getPayoutData($processes, $date);
             if ($isFirstLine) {

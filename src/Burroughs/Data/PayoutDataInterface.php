@@ -29,4 +29,4 @@ interface PayoutDataInterface
      * @return mixed
      */
     public function getHeaderAsArray();
-} 
+}

@@ -7,6 +7,7 @@
  */
 
 namespace Wienerio\Burroughs\PayoutProcessor;
+
 use Psr\Log\LoggerInterface;
 
 /**
